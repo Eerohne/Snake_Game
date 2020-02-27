@@ -32,7 +32,7 @@ public class SnakeGame {
         window.setVisible(true);
         
         while(true){
-            Thread.sleep(500);
+            Thread.sleep(200);
             if(!game.gameOver)
                 game.drawSnake();
             game.repaint();

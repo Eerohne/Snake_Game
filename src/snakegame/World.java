@@ -129,13 +129,22 @@ public class World extends JPanel implements KeyListener{
             }
         }
         
-        for (int k = 0; k < squares.size(); k++) {
-            if (squares.get(k) == -1) {
-                squares.remove(k);
+        int temp = 0;
+        
+        for (Integer square : squares) {
+            if (square == -1) {
+                temp++;
             }
         }
         
-        Integer[] position = Arrays.copyOf(grid[squares.get(rnd.nextInt(squares.size()))], 2);
+        for (int i = 0; i <= temp; i++) {
+            squares.remove(new Integer(-1));
+        }
+        
+        int test = rnd.nextInt(squares.size());
+        int pos = squares.get(test);
+        
+        Integer[] position = Arrays.copyOf(grid[pos], 2);
         
         fruit.setX(position[0]*SQUARE);
         fruit.setY(position[1]*SQUARE);
@@ -171,7 +180,7 @@ public class World extends JPanel implements KeyListener{
         if(fruit.x == snake.get(0).x && fruit.y == snake.get(0).y){
             drawFruit();
             score += 10;
-            snake.add(new SnakePart(snake.get(snake.size()-1).x, snake.get(snake.size()-1).y));
+            snake.add(new SnakePart(snake.get(snake.size()-1).previousX, snake.get(snake.size()-1).previousY));
         }
     }
     

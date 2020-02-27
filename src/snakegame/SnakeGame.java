@@ -18,16 +18,25 @@ public class SnakeGame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // TODO code application logic here
+        
         JFrame window = new JFrame("Snake Game");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(480, 360);
-        
+        window.setResizable(true);
+        window.setUndecorated(true);
         World game = new World();
         
         window.add(game);
         window.setVisible(true);
+        
+        while(true){
+            Thread.sleep(500);
+            game.drawSnake();
+            game.repaint();
+            //System.out.println("DONE");
+        }
     }
     
 }

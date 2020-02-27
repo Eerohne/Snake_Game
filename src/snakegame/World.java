@@ -71,6 +71,7 @@ public class World extends JPanel implements KeyListener{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         this.setBackground(Color.BLACK);
+        this.gameOver = testGameOver();
         
         if(!gameOver){
             g.setColor(Color.RED);
@@ -151,6 +152,7 @@ public class World extends JPanel implements KeyListener{
     }
     
     public void drawSnake() {
+        
         switch(direction){
             case UP:
                 snake.get(0).setY(snake.get(0).y - SQUARE);
@@ -175,7 +177,7 @@ public class World extends JPanel implements KeyListener{
             snake.get(i).setY(snake.get(i-1).getPreviousY());
         }
         
-        this.gameOver = testGameOver();
+        
         
         if(fruit.x == snake.get(0).x && fruit.y == snake.get(0).y){
             drawFruit();
@@ -185,9 +187,9 @@ public class World extends JPanel implements KeyListener{
     }
     
     private boolean testGameOver(){
-        if(snake.get(0).x > 480 || snake.get(0).x < 0)
+        if(snake.get(0).x > 440 || snake.get(0).x < 0)
             return true;
-        else if(snake.get(0).y > 360 || snake.get(0).y < 0)
+        else if(snake.get(0).y > 320 || snake.get(0).y < 0)
             return true;
         for (int i = 1; i < snake.size(); i++){
             if(snake.get(0).x == snake.get(i).x && snake.get(0).y == snake.get(i).y)
@@ -233,8 +235,6 @@ public class World extends JPanel implements KeyListener{
     public void keyReleased(KeyEvent e) {}
     
 }
-
-
 
 class SnakePart {
     public int x, y, previousX, previousY;

@@ -29,6 +29,7 @@ enum Direction{
 public class World extends JPanel implements KeyListener{
     private Integer[][] grid = new Integer[12*9][2];
     private final int SQUARE = 40;
+    public int speed = 300;
     
     private int score;
     private int highScore; 
@@ -36,7 +37,8 @@ public class World extends JPanel implements KeyListener{
     public boolean gameOver = false;
     private JButton playAgain = new JButton("Play Again");
     
-    private Direction direction = Direction.DOWN;
+    public Direction testedDirection; 
+    public Direction direction = Direction.DOWN;
     
     public SnakePart fruit = new SnakePart();
     private ArrayList<SnakePart> snake;
@@ -227,6 +229,15 @@ public class World extends JPanel implements KeyListener{
                 break;
             case KeyEvent.VK_ESCAPE:
                 System.exit(0);
+            case KeyEvent.VK_1:
+                System.out.println(speed);
+                if(!(speed-50 <= 0))
+                    speed -= 50;
+                break;
+            case KeyEvent.VK_2:
+                System.out.println(speed);
+                speed += 50;
+                break;
             default:
                 break;
         }
@@ -234,8 +245,16 @@ public class World extends JPanel implements KeyListener{
 
     @Override
     public void keyReleased(KeyEvent e) {}
-    
 }
+
+
+
+///////
+////////
+//////
+
+
+
 
 class SnakePart {
     public int x, y, previousX, previousY;

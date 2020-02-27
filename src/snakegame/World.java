@@ -55,6 +55,7 @@ public class World extends JPanel implements KeyListener{
                 playAgain.setVisible(false);
                 direction = Direction.DOWN;
                 gameOver = false;
+                score = 0;
             }
         });
         playAgain.setVisible(false);

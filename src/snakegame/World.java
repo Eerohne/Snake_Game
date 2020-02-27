@@ -73,11 +73,6 @@ public class World extends JPanel implements KeyListener{
         this.setBackground(Color.BLACK);
         
         if(!gameOver){
-            g.setColor(Color.BLACK);
-            for (Integer[] square : grid) {
-                g.fillRect(square[0]*SQUARE, square[1]*SQUARE, SQUARE, SQUARE);
-            }
-
             g.setColor(Color.RED);
             for (SnakePart snakePart : snake) {
                 g.fillRect(snakePart.x, snakePart.y, SQUARE, SQUARE);
@@ -127,8 +122,16 @@ public class World extends JPanel implements KeyListener{
             Integer[] coordinates = {snakePart.x/SQUARE, snakePart.y/SQUARE};
             
             for (int j = 0; j < grid.length; j++) {
-                if(coordinates.equals(grid[j]))
-                    squares.remove(j);
+                if(coordinates[0] == grid[j][0] && coordinates[1] == grid[j][1]){
+                    squares.set(j, -1);
+                    break;
+                }
+            }
+        }
+        
+        for (int k = 0; k < squares.size(); k++) {
+            if (squares.get(k) == -1) {
+                squares.remove(k);
             }
         }
         
@@ -210,8 +213,9 @@ public class World extends JPanel implements KeyListener{
             case KeyEvent.VK_SPACE:
                 direction = Direction.STOP;
                 break;
+            case KeyEvent.VK_ESCAPE:
+                System.exit(0);
             default:
-                drawFruit();
                 break;
         }
     }

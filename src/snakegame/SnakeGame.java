@@ -33,7 +33,8 @@ public class SnakeGame {
         
         while(true){
             Thread.sleep(500);
-            game.drawSnake();
+            if(!game.gameOver)
+                game.drawSnake();
             game.repaint();
             //System.out.println("DONE");
         }
